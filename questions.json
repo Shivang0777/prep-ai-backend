@@ -1,0 +1,432 @@
+[
+  {
+    "id": 1, "title": "Two Sum", "difficulty": "Easy", "topic": "Arrays",
+    "description": "Find indices of two numbers that add up to target.",
+    "example": "nums = [2,7,11,15], target = 9 => [0,1]",
+    "testCases": [{ "input": "[2,7,11,15], 9", "inputDisplay": "nums=[2,7,11,15], target=9", "expected": "[0,1]", "injector": { "javascript": "console.log(JSON.stringify(solution([2,7,11,15], 9)));" } }],
+    "snippets": { "javascript": "function solution(nums, target) {\n    \n}" }
+  },
+  {
+    "id": 2, "title": "Best Time to Buy and Sell Stock", "difficulty": "Easy", "topic": "Arrays",
+    "description": "Find max profit from buying and selling a stock.",
+    "example": "[7,1,5,3,6,4] => 5",
+    "testCases": [{ "input": "[7,1,5,3,6,4]", "inputDisplay": "prices=[7,1,5,3,6,4]", "expected": "5", "injector": { "javascript": "console.log(solution([7,1,5,3,6,4]));" } }],
+    "snippets": { "javascript": "function solution(prices) {\n    \n}" }
+  },
+  {
+    "id": 3, "title": "Contains Duplicate", "difficulty": "Easy", "topic": "Arrays",
+    "description": "Check if any value appears at least twice in the array.",
+    "example": "[1,2,3,1] => true",
+    "testCases": [{ "input": "[1,2,3,1]", "inputDisplay": "nums=[1,2,3,1]", "expected": "true", "injector": { "javascript": "console.log(solution([1,2,3,1]));" } }],
+    "snippets": { "javascript": "function solution(nums) {\n    \n}" }
+  },
+  {
+    "id": 4, "title": "Product of Array Except Self", "difficulty": "Medium", "topic": "Arrays",
+    "description": "Return an array where output[i] is product of all elements except nums[i].",
+    "example": "[1,2,3,4] => [24,12,8,6]",
+    "testCases": [{ "input": "[1,2,3,4]", "inputDisplay": "nums=[1,2,3,4]", "expected": "[24,12,8,6]", "injector": { "javascript": "console.log(JSON.stringify(solution([1,2,3,4])));" } }],
+    "snippets": { "javascript": "function solution(nums) {\n    \n}" }
+  },
+  {
+    "id": 5, "title": "Maximum Subarray (Kadane's)", "difficulty": "Medium", "topic": "Arrays",
+    "description": "Find the sum of the contiguous subarray with the largest sum.",
+    "example": "[-2,1,-3,4,-1,2,1,-5,4] => 6",
+    "testCases": [{ "input": "[-2,1,-3,4,-1,2,1,-5,4]", "inputDisplay": "nums=[-2...4]", "expected": "6", "injector": { "javascript": "console.log(solution([-2,1,-3,4,-1,2,1,-5,4]));" } }],
+    "snippets": { "javascript": "function solution(nums) {\n    \n}" }
+  },
+  {
+    "id": 6, "title": "Maximum Product Subarray", "difficulty": "Medium", "topic": "Arrays",
+    "description": "Find the contiguous subarray within an array which has the largest product.",
+    "example": "[2,3,-2,4] => 6",
+    "testCases": [{ "input": "[2,3,-2,4]", "expected": "6", "injector": { "javascript": "console.log(solution([2,3,-2,4]));" } }],
+    "snippets": { "javascript": "function solution(nums) {\n    \n}" }
+  },
+  {
+    "id": 7, "title": "Find Minimum in Rotated Sorted Array", "difficulty": "Medium", "topic": "Arrays",
+    "description": "Find the minimum element in a sorted array that has been rotated.",
+    "example": "[3,4,5,1,2] => 1",
+    "testCases": [{ "input": "[3,4,5,1,2]", "expected": "1", "injector": { "javascript": "console.log(solution([3,4,5,1,2]));" } }],
+    "snippets": { "javascript": "function solution(nums) {\n    \n}" }
+  },
+  {
+    "id": 21, "title": "Valid Anagram", "difficulty": "Easy", "topic": "Strings",
+    "description": "Check if two strings are anagrams of each other.",
+    "example": "s='anagram', t='nagaram' => true",
+    "testCases": [{ "input": "'anagram', 'nagaram'", "inputDisplay": "s='anagram', t='nagaram'", "expected": "true", "injector": { "javascript": "console.log(solution('anagram', 'nagaram'));" } }],
+    "snippets": { "javascript": "function solution(s, t) {\n    \n}" }
+  },
+  {
+    "id": 22, "title": "Valid Parentheses", "difficulty": "Easy", "topic": "Strings",
+    "description": "Determine if the input string has valid brackets matching.",
+    "example": "'()[]{}' => true",
+    "testCases": [{ "input": "'()[]{}'", "expected": "true", "injector": { "javascript": "console.log(solution('()[]{}'));" } }],
+    "snippets": { "javascript": "function solution(s) {\n    \n}" }
+  },
+  {
+    "id": 23, "title": "Valid Palindrome", "difficulty": "Easy", "topic": "Strings",
+    "description": "Check if string is a palindrome after removing non-alphanumeric characters.",
+    "example": "'race a car' => false",
+    "testCases": [{ "input": "'race a car'", "expected": "false", "injector": { "javascript": "console.log(solution('race a car'));" } }],
+    "snippets": { "javascript": "function solution(s) {\n    \n}" }
+  },
+  {
+    "id": 24, "title": "Longest Substring Without Repeating Characters", "difficulty": "Medium", "topic": "Strings",
+    "description": "Find the length of the longest substring without repeating characters.",
+    "example": "'abcabcbb' => 3",
+    "testCases": [{ "input": "'abcabcbb'", "expected": "3", "injector": { "javascript": "console.log(solution('abcabcbb'));" } }],
+    "snippets": { "javascript": "function solution(s) {\n    \n}" }
+  },
+  {
+    "id": 25, "title": "Longest Palindromic Substring", "difficulty": "Medium", "topic": "Strings",
+    "description": "Find the longest palindromic substring in s.",
+    "example": "'babad' => 'bab'",
+    "testCases": [{ "input": "'babad'", "expected": "'bab'", "injector": { "javascript": "console.log(solution('babad'));" } }],
+    "snippets": { "javascript": "function solution(s) {\n    \n}" }
+  },
+  {
+    "id": 41, "title": "Reverse Linked List", "difficulty": "Easy", "topic": "Linked List",
+    "description": "Given the head of a singly linked list, reverse the list.",
+    "example": "[1,2,3] => [3,2,1]",
+    "testCases": [{ "input": "[1,2,3]", "expected": "[3,2,1]", "injector": { "javascript": "// LL logic" } }],
+    "snippets": { "javascript": "function solution(head) {\n    \n}" }
+  },
+  {
+    "id": 26, "title": "Group Anagrams", "difficulty": "Medium", "topic": "Strings",
+    "description": "Given an array of strings, group anagrams together.",
+    "example": "['eat', 'tea', 'tan', 'ate', 'nat', 'bat'] => [['bat'],['nat','tan'],['ate','eat','tea']]",
+    "testCases": [{ "input": "['eat', 'tea', 'tan']", "expected": "[['eat','tea'],['tan']]", "injector": { "javascript": "console.log(JSON.stringify(solution(['eat', 'tea', 'tan'])));" } }],
+    "snippets": { "javascript": "function solution(strs) {\n    \n}" }
+  },
+  {
+    "id": 27, "title": "Longest Repeating Character Replacement", "difficulty": "Medium", "topic": "Strings",
+    "description": "Find the length of the longest substring containing the same letter after performing at most k replacements.",
+    "example": "s = 'ABAB', k = 2 => 4",
+    "testCases": [{ "input": "'ABAB', 2", "expected": "4", "injector": { "javascript": "console.log(solution('ABAB', 2));" } }],
+    "snippets": { "javascript": "function solution(s, k) {\n    \n}" }
+  },
+  {
+    "id": 42, "title": "Linked List Cycle", "difficulty": "Easy", "topic": "Linked List",
+    "description": "Determine if a linked list has a cycle in it.",
+    "example": "head = [3,2,0,-4], pos = 1 => true",
+    "testCases": [{ "input": "[3,2,0,-4]", "expected": "true", "injector": { "javascript": "// Cycle logic" } }],
+    "snippets": { "javascript": "function solution(head) {\n    \n}" }
+  },
+  {
+    "id": 43, "title": "Merge Two Sorted Lists", "difficulty": "Easy", "topic": "Linked List",
+    "description": "Merge two sorted linked lists and return it as a sorted list.",
+    "example": "l1 = [1,2,4], l2 = [1,3,4] => [1,1,2,3,4,4]",
+    "testCases": [{ "input": "[1,2,4], [1,3,4]", "expected": "[1,1,2,3,4,4]", "injector": { "javascript": "// Merge logic" } }],
+    "snippets": { "javascript": "function solution(l1, l2) {\n    \n}" }
+  },
+  {
+    "id": 44, "title": "Remove Nth Node From End of List", "difficulty": "Medium", "topic": "Linked List",
+    "description": "Remove the nth node from the end of the list and return its head.",
+    "example": "head = [1,2,3,4,5], n = 2 => [1,2,3,5]",
+    "testCases": [{ "input": "[1,2,3,4,5], 2", "expected": "[1,2,3,5]", "injector": { "javascript": "// Remove logic" } }],
+    "snippets": { "javascript": "function solution(head, n) {\n    \n}" }
+  },
+  {
+    "id": 45, "title": "Reorder List", "difficulty": "Medium", "topic": "Linked List",
+    "description": "Reorder the list to follow the pattern: L0 → Ln → L1 → Ln-1 → L2 → Ln-2 → …",
+    "example": "[1,2,3,4] => [1,4,2,3]",
+    "testCases": [{ "input": "[1,2,3,4]", "expected": "[1,4,2,3]", "injector": { "javascript": "// Reorder logic" } }],
+    "snippets": { "javascript": "function solution(head) {\n    \n}" }
+  },
+  {
+    "id": 61, "title": "Binary Search", "difficulty": "Easy", "topic": "Binary Search",
+    "description": "Given a sorted array and a target, find the index of the target.",
+    "example": "nums = [-1,0,3,5,9,12], target = 9 => 4",
+    "testCases": [{ "input": "[-1,0,3,5,9,12], 9", "expected": "4", "injector": { "javascript": "console.log(solution([-1,0,3,5,9,12], 9));" } }],
+    "snippets": { "javascript": "function solution(nums, target) {\n    \n}" }
+  },
+  {
+    "id": 62, "title": "Search in Rotated Sorted Array", "difficulty": "Medium", "topic": "Binary Search",
+    "description": "Find target in a sorted array that has been rotated.",
+    "example": "nums = [4,5,6,7,0,1,2], target = 0 => 4",
+    "testCases": [{ "input": "[4,5,6,7,0,1,2], 0", "expected": "4", "injector": { "javascript": "console.log(solution([4,5,6,7,0,1,2], 0));" } }],
+    "snippets": { "javascript": "function solution(nums, target) {\n    \n}" }
+  },
+  {
+    "id": 63, "title": "Find Minimum in Rotated Sorted Array", "difficulty": "Medium", "topic": "Binary Search",
+    "description": "Find the minimum element in a rotated sorted array.",
+    "example": "[3,4,5,1,2] => 1",
+    "testCases": [{ "input": "[3,4,5,1,2]", "expected": "1", "injector": { "javascript": "console.log(solution([3,4,5,1,2]));" } }],
+    "snippets": { "javascript": "function solution(nums) {\n    \n}" }
+  },
+  {
+    "id": 64, "title": "Koko Eating Bananas", "difficulty": "Medium", "topic": "Binary Search",
+    "description": "Find the minimum integer k such that Koko can eat all bananas within h hours.",
+    "example": "piles = [3,6,7,11], h = 8 => 4",
+    "testCases": [{ "input": "[3,6,7,11], 8", "expected": "4", "injector": { "javascript": "console.log(solution([3,6,7,11], 8));" } }],
+    "snippets": { "javascript": "function solution(piles, h) {\n    \n}" }
+  },
+  {
+    "id": 71, "title": "Invert Binary Tree", "difficulty": "Easy", "topic": "Binary Tree",
+    "description": "Given the root of a binary tree, invert the tree (mirror image).",
+    "example": "[4,2,7,1,3,6,9] => [4,7,2,9,6,3,1]",
+    "testCases": [{ "input": "[4,2,7]", "expected": "[4,7,2]", "injector": { "javascript": "// Tree logic" } }],
+    "snippets": { "javascript": "function solution(root) {\n    \n}" }
+  },
+  {
+    "id": 72, "title": "Maximum Depth of Binary Tree", "difficulty": "Easy", "topic": "Binary Tree",
+    "description": "Find the length of the longest path from the root node down to the farthest leaf node.",
+    "example": "[3,9,20,null,null,15,7] => 3",
+    "testCases": [{ "input": "[3,9,20]", "expected": "2", "injector": { "javascript": "// Depth logic" } }],
+    "snippets": { "javascript": "function solution(root) {\n    \n}" }
+  },
+  {
+    "id": 73, "title": "Same Tree", "difficulty": "Easy", "topic": "Binary Tree",
+    "description": "Check if two binary trees are structurally identical and have the same node values.",
+    "example": "p = [1,2], q = [1,2] => true",
+    "testCases": [{ "input": "[1,2], [1,2]", "expected": "true", "injector": { "javascript": "// Same tree logic" } }],
+    "snippets": { "javascript": "function solution(p, q) {\n    \n}" }
+  },
+  {
+    "id": 74, "title": "Binary Tree Level Order Traversal", "difficulty": "Medium", "topic": "Binary Tree",
+    "description": "Return the level order traversal of its nodes' values (BFS).",
+    "example": "[3,9,20,null,null,15,7] => [[3],[9,20],[15,7]]",
+    "testCases": [{ "input": "[3,9,20]", "expected": "[[3],[9,20]]", "injector": { "javascript": "// BFS logic" } }],
+    "snippets": { "javascript": "function solution(root) {\n    \n}" }
+  },
+  {
+    "id": 75, "title": "Lowest Common Ancestor of a BST", "difficulty": "Medium", "topic": "Binary Tree",
+    "description": "Find the lowest common ancestor (LCA) node of two given nodes in a BST.",
+    "example": "root = [6,2,8], p = 2, q = 8 => 6",
+    "testCases": [{ "input": "[6,2,8], 2, 8", "expected": "6", "injector": { "javascript": "// LCA logic" } }],
+    "snippets": { "javascript": "function solution(root, p, q) {\n    \n}" }
+  },
+  {
+    "id": 91, "title": "Number of Islands", "difficulty": "Medium", "topic": "Graphs",
+    "description": "Given an m x n 2D binary grid, return the number of islands (connected 1's).",
+    "example": "grid = [['1','1','0'],['0','0','1']] => 2",
+    "testCases": [{ "input": "[['1','1','0'],['0','0','1']]", "expected": "2", "injector": { "javascript": "console.log(solution([['1','1','0'],['0','0','1']]));" } }],
+    "snippets": { "javascript": "function solution(grid) {\n    \n}" }
+  },
+  {
+    "id": 92, "title": "Clone Graph", "difficulty": "Medium", "topic": "Graphs",
+    "description": "Return a deep copy of a connected undirected graph.",
+    "example": "adjList = [[2,4],[1,3],[2,4],[1,3]] => [[2,4],[1,3],[2,4],[1,3]]",
+    "testCases": [{ "input": "[[2,4],[1,3]]", "expected": "[[2,4],[1,3]]", "injector": { "javascript": "// Clone logic" } }],
+    "snippets": { "javascript": "function solution(node) {\n    \n}" }
+  },
+  {
+    "id": 93, "title": "Course Schedule", "difficulty": "Medium", "topic": "Graphs",
+    "description": "Determine if you can finish all courses given the prerequisites (Cycle detection).",
+    "example": "numCourses = 2, prerequisites = [[1,0]] => true",
+    "testCases": [{ "input": "2, [[1,0]]", "expected": "true", "injector": { "javascript": "console.log(solution(2, [[1,0]]));" } }],
+    "snippets": { "javascript": "function solution(numCourses, prerequisites) {\n    \n}" }
+  },
+  {
+    "id": 94, "title": "Pacific Atlantic Water Flow", "difficulty": "Medium", "topic": "Graphs",
+    "description": "Find the list of grid coordinates where water can flow to both Pacific and Atlantic oceans.",
+    "example": "heights = [[1,2],[2,1]] => [[0,0],[0,1],[1,0],[1,1]]",
+    "testCases": [{ "input": "[[1,2],[2,1]]", "expected": "[[0,0],[0,1],[1,0],[1,1]]", "injector": { "javascript": "// DFS logic" } }],
+    "snippets": { "javascript": "function solution(heights) {\n    \n}" }
+  },
+  {
+    "id": 81, "title": "Climbing Stairs", "difficulty": "Easy", "topic": "Dynamic Programming",
+    "description": "You are climbing a staircase. It takes n steps to reach the top. Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?",
+    "example": "n = 3 => 3 (1+1+1, 1+2, 2+1)",
+    "testCases": [{ "input": "3", "expected": "3", "injector": { "javascript": "console.log(solution(3));" } }],
+    "snippets": { "javascript": "function solution(n) {\n    \n}" }
+  },
+  {
+    "id": 82, "title": "Coin Change", "difficulty": "Medium", "topic": "Dynamic Programming",
+    "description": "Return the fewest number of coins that you need to make up a specific amount.",
+    "example": "coins = [1,2,5], amount = 11 => 3 (5+5+1)",
+    "testCases": [{ "input": "[1,2,5], 11", "expected": "3", "injector": { "javascript": "console.log(solution([1,2,5], 11));" } }],
+    "snippets": { "javascript": "function solution(coins, amount) {\n    \n}" }
+  },
+  {
+    "id": 83, "title": "Longest Increasing Subsequence", "difficulty": "Medium", "topic": "Dynamic Programming",
+    "description": "Find the length of the longest strictly increasing subsequence.",
+    "example": "nums = [10,9,2,5,3,7,101,18] => 4 ([2,3,7,101])",
+    "testCases": [{ "input": "[10,9,2,5,3,7,101,18]", "expected": "4", "injector": { "javascript": "console.log(solution([10,9,2,5,3,7,101,18]));" } }],
+    "snippets": { "javascript": "function solution(nums) {\n    \n}" }
+  },
+  {
+    "id": 84, "title": "House Robber", "difficulty": "Medium", "topic": "Dynamic Programming",
+    "description": "Find the maximum amount of money you can rob tonight without alerting the police (cannot rob adjacent houses).",
+    "example": "[1,2,3,1] => 4",
+    "testCases": [{ "input": "[1,2,3,1]", "expected": "4", "injector": { "javascript": "console.log(solution([1,2,3,1]));" } }],
+    "snippets": { "javascript": "function solution(nums) {\n    \n}" }
+  },
+  {
+    "id": 85, "title": "Word Break", "difficulty": "Medium", "topic": "Dynamic Programming",
+    "description": "Determine if s can be segmented into a space-separated sequence of one or more dictionary words.",
+    "example": "s = 'leetcode', wordDict = ['leet','code'] => true",
+    "testCases": [{ "input": "'leetcode', ['leet','code']", "expected": "true", "injector": { "javascript": "console.log(solution('leetcode', ['leet','code']));" } }],
+    "snippets": { "javascript": "function solution(s, wordDict) {\n    \n}" }
+  },
+  {
+    "id": 101, "title": "Top K Frequent Elements", "difficulty": "Medium", "topic": "Heap",
+    "description": "Given an integer array nums and an integer k, return the k most frequent elements.",
+    "example": "nums = [1,1,1,2,2,3], k = 2 => [1,2]",
+    "testCases": [{ "input": "[1,1,1,2,2,3], 2", "expected": "[1,2]", "injector": { "javascript": "console.log(JSON.stringify(solution([1,1,1,2,2,3], 2)));" } }],
+    "snippets": { "javascript": "function solution(nums, k) {\n    \n}" }
+  },
+  {
+    "id": 111, "title": "Merge Intervals", "difficulty": "Medium", "topic": "Intervals",
+    "description": "Merge all overlapping intervals.",
+    "example": "[[1,3],[2,6],[8,10]] => [[1,6],[8,10]]",
+    "testCases": [{ "input": "[[1,3],[2,6],[8,10]]", "expected": "[[1,6],[8,10]]", "injector": { "javascript": "console.log(JSON.stringify(solution([[1,3],[2,6],[8,10]])));" } }],
+    "snippets": { "javascript": "function solution(intervals) {\n    \n}" }
+  },
+  {
+    "id": 121, "title": "Meeting Rooms", "difficulty": "Easy", "topic": "Intervals",
+    "description": "Determine if a person could attend all meetings.",
+    "example": "[[0,30],[5,10],[15,20]] => false",
+    "testCases": [{ "input": "[[0,30],[5,10],[15,20]]", "expected": "false", "injector": { "javascript": "console.log(solution([[0,30],[5,10],[15,20]]));" } }],
+    "snippets": { "javascript": "function solution(intervals) {\n    \n}" }
+  },
+  {
+    "id": 131, "title": "Implement Stack using Queues", "difficulty": "Easy", "topic": "Stack",
+    "description": "Implement a last-in-first-out (LIFO) stack using only two queues.",
+    "example": "push(1), push(2), top() => 2",
+    "testCases": [{ "input": "push(1), push(2), top()", "expected": "2", "injector": { "javascript": "// Stack logic" } }],
+    "snippets": { "javascript": "function MyStack() {\n\n}" }
+  },
+  {
+    "id": 132, "title": "Valid Parentheses", "difficulty": "Easy", "topic": "Stack",
+    "description": "Use a stack to check if brackets are closed in correct order.",
+    "example": "()[]{} => true",
+    "testCases": [{ "input": "'()[]{}'", "expected": "true", "injector": { "javascript": "console.log(solution('()[]{}'));" } }],
+    "snippets": { "javascript": "function solution(s) {\n\n}" }
+  },
+  {
+    "id": 151, "title": "Implement Queue using Stacks", "difficulty": "Easy", "topic": "Queue",
+    "description": "Implement a first-in-first-out (FIFO) queue using only two stacks.",
+    "example": "push(1), push(2), peek() => 1",
+    "testCases": [{ "input": "push(1), push(2), peek()", "expected": "1", "injector": { "javascript": "// Queue logic" } }],
+    "snippets": { "javascript": "function MyQueue() {\n\n}" }
+  },
+ 
+  { "id": 10, "title": "Move Zeroes", "topic": "Arrays", "difficulty": "Easy", "description": "Move all 0's to the end while maintaining the relative order of non-zero elements.", "testCases": [{"input": "[0,1,0,3,12]", "expected": "[1,3,12,0,0]"}], "snippets": {"javascript": "function solution(nums) {}"}},
+  { "id": 11, "title": "Remove Duplicates from Sorted Array", "topic": "Arrays", "difficulty": "Easy", "description": "Remove duplicates in-place such that each element appears only once.", "testCases": [{"input": "[1,1,2]", "expected": "2"}], "snippets": {"javascript": "function solution(nums) {}"}},
+  { "id": 12, "title": "Squares of a Sorted Array", "topic": "Arrays", "difficulty": "Easy", "description": "Return an array of the squares of each number sorted in non-decreasing order.", "testCases": [{"input": "[-4,-1,0,3,10]", "expected": "[0,1,9,16,100]"}], "snippets": {"javascript": "function solution(nums) {}"}},
+  { "id": 13, "title": "Find All Numbers Disappeared in an Array", "topic": "Arrays", "difficulty": "Easy", "description": "Find all the elements of [1, n] that do not appear in nums.", "testCases": [{"input": "[4,3,2,7,8,2,3,1]", "expected": "[5,6]"}], "snippets": {"javascript": "function solution(nums) {}"}},
+  { "id": 14, "title": "Majority Element", "topic": "Arrays", "difficulty": "Easy", "description": "Find the element that appears more than n/2 times.", "testCases": [{"input": "[3,2,3]", "expected": "3"}], "snippets": {"javascript": "function solution(nums) {}"}},
+  { "id": 15, "title": "Rotate Array", "topic": "Arrays", "difficulty": "Medium", "description": "Rotate the array to the right by k steps.", "testCases": [{"input": "[1,2,3,4,5,6,7], 3", "expected": "[5,6,7,1,2,3,4]"}], "snippets": {"javascript": "function solution(nums, k) {}"}},
+  { "id": 16, "title": "Next Permutation", "topic": "Arrays", "difficulty": "Medium", "description": "Find the next lexicographically greater permutation of numbers.", "testCases": [{"input": "[1,2,3]", "expected": "[1,3,2]"}], "snippets": {"javascript": "function solution(nums) {}"}},
+  { "id": 17, "title": "Merge Intervals", "topic": "Arrays", "difficulty": "Medium", "description": "Merge all overlapping intervals.", "testCases": [{"input": "[[1,3],[2,6]]", "expected": "[[1,6]]"}], "snippets": {"javascript": "function solution(intervals) {}"}},
+  { "id": 18, "title": "Insert Interval", "topic": "Arrays", "difficulty": "Medium", "description": "Insert a new interval into a sorted list of intervals.", "testCases": [{"input": "[[1,3],[6,9]], [2,5]", "expected": "[[1,5],[6,9]]"}], "snippets": {"javascript": "function solution(intervals, newInterval) {}"}},
+  { "id": 19, "title": "Non-overlapping Intervals", "topic": "Arrays", "difficulty": "Medium", "description": "Find the minimum number of intervals to remove to make the rest non-overlapping.", "testCases": [{"input": "[[1,2],[2,3],[3,4],[1,3]]", "expected": "1"}], "snippets": {"javascript": "function solution(intervals) {}"}},
+
+  { "id": 29, "title": "Isomorphic Strings", "topic": "Strings", "difficulty": "Easy", "description": "Determine if two strings are isomorphic.", "testCases": [{"input": "'egg', 'add'", "expected": "true"}], "snippets": {"javascript": "function solution(s, t) {}"}},
+  { "id": 30, "title": "Word Pattern", "topic": "Strings", "difficulty": "Easy", "description": "Check if s follows the same pattern as 'pattern'.", "testCases": [{"input": "'abba', 'dog cat cat dog'", "expected": "true"}], "snippets": {"javascript": "function solution(pattern, s) {}"}},
+  { "id": 31, "title": "Longest Palindrome", "topic": "Strings", "difficulty": "Easy", "description": "Find the length of the longest palindrome that can be built with given letters.", "testCases": [{"input": "'abccccdd'", "expected": "7"}], "snippets": {"javascript": "function solution(s) {}"}},
+  { "id": 32, "title": "Reverse Words in a String", "topic": "Strings", "difficulty": "Medium", "description": "Reverse the order of words in a string.", "testCases": [{"input": "'the sky is blue'", "expected": "'blue is sky the'"}], "snippets": {"javascript": "function solution(s) {}"}},
+  { "id": 33, "title": "String to Integer (atoi)", "topic": "Strings", "difficulty": "Medium", "description": "Implement the atoi function which converts a string to a 32-bit signed integer.", "testCases": [{"input": "'   -42'", "expected": "-42"}], "snippets": {"javascript": "function solution(s) {}"}},
+
+  
+  { "id": 136, "title": "Next Greater Element I", "topic": "Stack", "difficulty": "Easy", "description": "Find the next greater element for each element in nums1 from nums2.", "testCases": [{"input": "[4,1,2], [1,3,4,2]", "expected": "[-1,3,-1]"}], "snippets": {"javascript": "function solution(nums1, nums2) {}"}},
+  { "id": 137, "title": "Baseball Game", "topic": "Stack", "difficulty": "Easy", "description": "Keep score based on a list of operations.", "testCases": [{"input": "['5','2','C','D','+']", "expected": "30"}], "snippets": {"javascript": "function solution(ops) {}"}},
+  { "id": 138, "title": "Simplify Path", "topic": "Stack", "difficulty": "Medium", "description": "Convert an absolute Unix-style path to its simplified canonical path.", "testCases": [{"input": "'/home//foo/'", "expected": "'/home/foo'"}], "snippets": {"javascript": "function solution(path) {}"}},
+  { "id": 139, "title": "Basic Calculator II", "topic": "Stack", "difficulty": "Medium", "description": "Implement a basic calculator to evaluate a simple expression string.", "testCases": [{"input": "'3+2*2'", "expected": "7"}], "snippets": {"javascript": "function solution(s) {}"}},
+  { "id": 140, "title": "Asteroid Collision", "topic": "Stack", "difficulty": "Medium", "description": "Find out the state of the asteroids after all collisions.", "testCases": [{"input": "[5,10,-5]", "expected": "[5,10]"}], "snippets": {"javascript": "function solution(asteroids) {}"}},
+
+
+  { "id": 154, "title": "Dota2 Senate", "topic": "Queue", "difficulty": "Medium", "description": "Predict which party will finally announce the victory.", "testCases": [{"input": "'RD'", "expected": "'Radiant'"}], "snippets": {"javascript": "function solution(senate) {}"}},
+  { "id": 155, "title": "Task Scheduler", "topic": "Queue", "difficulty": "Medium", "description": "Find the least amount of time to finish all tasks with a cooldown period.", "testCases": [{"input": "['A','A','A','B','B','B'], 2", "expected": "8"}], "snippets": {"javascript": "function solution(tasks, n) {}"}},
+  { "id": 156, "title": "Design Circular Deque", "topic": "Queue", "difficulty": "Medium", "description": "Implement a double-ended queue.", "testCases": [{"input": "insertLast(1), insertLast(2), getFront()", "expected": "1"}], "snippets": {"javascript": "var MyCircularDeque = function(k) {}"}},
+  { "id": 157, "title": "Gas Station", "topic": "Queue", "difficulty": "Medium", "description": "Find the starting gas station's index if you can travel around the circuit.", "testCases": [{"input": "gas = [1,2,3,4,5], cost = [3,4,5,1,2]", "expected": "3"}], "snippets": {"javascript": "function solution(gas, cost) {}"}},
+  { "id": 158, "title": "Reveal Cards In Increasing Order", "topic": "Queue", "difficulty": "Medium", "description": "Return an ordering of the deck that would reveal the cards in increasing order.", "testCases": [{"input": "[17,13,11,2,3,5,7]", "expected": "[2,13,3,11,5,17,7]"}], "snippets": {"javascript": "function solution(deck) {}"}},
+
+ 
+  { "id": 77, "title": "Path Sum", "topic": "Binary Tree", "difficulty": "Easy", "description": "Check if the tree has a root-to-leaf path such that adding up all the values equals targetSum.", "testCases": [{"input": "[5,4,8,11,null,13,4,7,2], 22", "expected": "true"}], "snippets": {"javascript": "function solution(root, targetSum) {}"}},
+  { "id": 78, "title": "Balanced Binary Tree", "topic": "Binary Tree", "difficulty": "Easy", "description": "Determine if a binary tree is height-balanced.", "testCases": [{"input": "[3,9,20,null,null,15,7]", "expected": "true"}], "snippets": {"javascript": "function solution(root) {}"}},
+  { "id": 79, "title": "Symmetric Tree", "topic": "Binary Tree", "difficulty": "Easy", "description": "Check whether a binary tree is a mirror of itself.", "testCases": [{"input": "[1,2,2,3,4,4,3]", "expected": "true"}], "snippets": {"javascript": "function solution(root) {}"}},
+  { "id": 80, "title": "Diameter of Binary Tree", "topic": "Binary Tree", "difficulty": "Easy", "description": "Find the length of the diameter of a binary tree.", "testCases": [{"input": "[1,2,3,4,5]", "expected": "3"}], "snippets": {"javascript": "function solution(root) {}"}},
+  { "id": 100, "title": "Binary Tree Zigzag Level Order Traversal", "topic": "Binary Tree", "difficulty": "Medium", "description": "Return the zigzag level order traversal of its nodes' values.", "testCases": [{"input": "[3,9,20,null,null,15,7]", "expected": "[[3],[20,9],[15,7]]"}], "snippets": {"javascript": "function solution(root) {}"}},
+
+
+  { "id": 87, "title": "Unique Paths", "topic": "Dynamic Programming", "difficulty": "Medium", "description": "Find the number of possible unique paths from top-left to bottom-right of a grid.", "testCases": [{"input": "3, 7", "expected": "28"}], "snippets": {"javascript": "function solution(m, n) {}"}},
+  { "id": 88, "title": "Longest Common Subsequence", "topic": "Dynamic Programming", "difficulty": "Medium", "description": "Find the length of the longest common subsequence of two strings.", "testCases": [{"input": "'abcde', 'ace'", "expected": "3"}], "snippets": {"javascript": "function solution(text1, text2) {}"}},
+  { "id": 89, "title": "Combination Sum IV", "topic": "Dynamic Programming", "difficulty": "Medium", "description": "Find the number of possible combinations that add up to a target.", "testCases": [{"input": "[1,2,3], 4", "expected": "7"}], "snippets": {"javascript": "function solution(nums, target) {}"}},
+  { "id": 90, "title": "Edit Distance", "topic": "Dynamic Programming", "difficulty": "Hard", "description": "Find the minimum number of operations required to convert word1 to word2.", "testCases": [{"input": "'horse', 'ros'", "expected": "3"}], "snippets": {"javascript": "function solution(word1, word2) {}"}},
+  { "id": 110, "title": "Maximum Product Subarray", "topic": "Dynamic Programming", "difficulty": "Medium", "description": "Find the contiguous subarray within an array which has the largest product.", "testCases": [{"input": "[2,3,-2,4]", "expected": "6"}], "snippets": {"javascript": "function solution(nums) {}"}},
+
+  
+  { "id": 96, "title": "Surrounded Regions", "topic": "Graphs", "difficulty": "Medium", "description": "Capture all regions that are 4-directionally surrounded by 'X'.", "testCases": [{"input": "[['X','X','X'],['X','O','X'],['X','X','X']]", "expected": "[['X','X','X'],['X','X','X'],['X','X','X']]"}], "snippets": {"javascript": "function solution(board) {}"}},
+  { "id": 97, "title": "Redundant Connection", "topic": "Graphs", "difficulty": "Medium", "description": "Find an edge that can be removed so that the resulting graph is a tree.", "testCases": [{"input": "[[1,2],[1,3],[2,3]]", "expected": "[2,3]"}], "snippets": {"javascript": "function solution(edges) {}"}},
+  { "id": 98, "title": "Word Ladder", "topic": "Graphs", "difficulty": "Hard", "description": "Find the length of shortest transformation sequence from beginWord to endWord.", "testCases": [{"input": "'hit', 'cog', ['hot','dot','dog','lot','log','cog']", "expected": "5"}], "snippets": {"javascript": "function solution(beginWord, endWord, wordList) {}"}},
+  { "id": 99, "title": "Graph Valid Tree", "topic": "Graphs", "difficulty": "Medium", "description": "Check if the given edges make up a valid tree.", "testCases": [{"input": "5, [[0,1],[0,2],[0,3],[1,4]]", "expected": "true"}], "snippets": {"javascript": "function solution(n, edges) {}"}},
+  { "id": 112, "title": "Min Cost to Connect All Points", "topic": "Graphs", "difficulty": "Medium", "description": "Find the minimum cost to make all points connected.", "testCases": [{"input": "[[0,0],[2,2],[3,10],[5,2],[7,0]]", "expected": "20"}], "snippets": {"javascript": "function solution(points) {}"}},
+
+  {
+    "id": 20, "title": "First Missing Positive", "topic": "Arrays", "difficulty": "Hard",
+    "description": "Find the smallest positive integer that is not present in an unsorted array.",
+    "testCases": [{"input": "[1,2,0]", "inputDisplay": "nums=[1,2,0]", "expected": "3", "injector": {"javascript": "console.log(solution([1,2,0]));"}}],
+    "snippets": {"javascript": "function solution(nums) {\n\n}"}
+  },
+  {
+    "id": 46, "title": "Trapping Rain Water", "topic": "Arrays", "difficulty": "Hard",
+    "description": "Compute how much water it can trap after raining based on elevation map.",
+    "testCases": [{"input": "[0,1,0,2,1,0,1,3,2,1,2,1]", "expected": "6", "injector": {"javascript": "console.log(solution([0,1,0,2,1,0,1,3,2,1,2,1]));"}}],
+    "snippets": {"javascript": "function solution(height) {\n\n}"}
+  },
+  {
+    "id": 47, "title": "Sliding Window Maximum", "topic": "Arrays", "difficulty": "Hard",
+    "description": "Find the maximum in each sliding window of size k.",
+    "testCases": [{"input": "[1,3,-1,-3,5,3,6,7], 3", "expected": "[3,3,5,5,6,7]", "injector": {"javascript": "console.log(JSON.stringify(solution([1,3,-1,-3,5,3,6,7], 3)));"}}],
+    "snippets": {"javascript": "function solution(nums, k) {\n\n}"}
+  },
+  {
+    "id": 48, "title": "Median of Two Sorted Arrays", "topic": "Arrays", "difficulty": "Hard",
+    "description": "Find the median of the two sorted arrays.",
+    "testCases": [{"input": "[1,3], [2]", "expected": "2.0", "injector": {"javascript": "console.log(solution([1,3], [2]).toFixed(1));"}}],
+    "snippets": {"javascript": "function solution(nums1, nums2) {\n\n}"}
+  },
+
+
+  {
+    "id": 49, "title": "Merge k Sorted Lists", "topic": "Linked List", "difficulty": "Hard",
+    "description": "Merge k sorted linked lists and return it as one sorted list.",
+    "testCases": [{"input": "[[1,4,5],[1,3,4],[2,6]]", "expected": "[1,1,2,3,4,4,5,6]", "injector": {"javascript": "// Merge logic"}}],
+    "snippets": {"javascript": "function solution(lists) {\n\n}"}
+  },
+  {
+    "id": 50, "title": "Copy List with Random Pointer", "topic": "Linked List", "difficulty": "Medium",
+    "description": "Construct a deep copy of the list where each node contains an additional random pointer.",
+    "testCases": [{"input": "[[7,null],[13,0],[11,4]]", "expected": "Deep Copy", "injector": {"javascript": "// Copy logic"}}],
+    "snippets": {"javascript": "function solution(head) {\n\n}"}
+  },
+  {
+    "id": 51, "title": "Intersection of Two Linked Lists", "topic": "Linked List", "difficulty": "Easy",
+    "description": "Return the node at which the two lists intersect.",
+    "testCases": [{"input": "intersectVal = 8, listA = [4,1,8,4,5], listB = [5,6,1,8,4,5]", "expected": "8", "injector": {"javascript": "// Intersect logic"}}],
+    "snippets": {"javascript": "function solution(headA, headB) {\n\n}"}
+  },
+  {
+    "id": 52, "title": "Add Two Numbers", "topic": "Linked List", "difficulty": "Medium",
+    "description": "Add two numbers represented by linked lists in reverse order.",
+    "testCases": [{"input": "[2,4,3], [5,6,4]", "expected": "[7,0,8]", "injector": {"javascript": "// Add logic"}}],
+    "snippets": {"javascript": "function solution(l1, l2) {\n\n}"}
+  },
+
+
+  {
+    "id": 159, "title": "Circular Queue Design", "topic": "Queue", "difficulty": "Medium",
+    "description": "Design your implementation of the circular queue.",
+    "testCases": [{"input": "enQueue(1), enQueue(2), Front()", "expected": "1", "injector": {"javascript": "// Circular logic"}}],
+    "snippets": {"javascript": "var MyCircularQueue = function(k) {\n\n};"}
+  },
+  {
+    "id": 160, "title": "Find the Winner of the Circular Game", "topic": "Queue", "difficulty": "Medium",
+    "description": "Find the winner of the Josephus problem with n friends and k steps.",
+    "testCases": [{"input": "5, 2", "expected": "3", "injector": {"javascript": "console.log(solution(5, 2));"}}],
+    "snippets": {"javascript": "function solution(n, k) {\n\n}"}
+  },
+  {
+    "id": 161, "title": "First Unique Character in a String", "topic": "Queue", "difficulty": "Easy",
+    "description": "Find the first non-repeating character and return its index.",
+    "testCases": [{"input": "'leetcode'", "expected": "0", "injector": {"javascript": "console.log(solution('leetcode'));"}}],
+    "snippets": {"javascript": "function solution(s) {\n\n}"}
+  },
+  {
+    "id": 162, "title": "Moving Average from Data Stream", "topic": "Queue", "difficulty": "Easy",
+    "description": "Calculate the moving average of all integers in the sliding window.",
+    "testCases": [{"input": "size=3, next(1), next(10), next(3)", "expected": "4.66", "injector": {"javascript": "// Moving avg logic"}}],
+    "snippets": {"javascript": "var MovingAverage = function(size) {\n\n};"}
+  }
+]
