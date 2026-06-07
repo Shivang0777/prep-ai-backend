@@ -21,15 +21,16 @@ mongoose.connect(process.env.MONGO_URI)
 
 // --- NODEMAILER TRANSPORTER ---
 const transporter = nodemailer.createTransport({
-  host: 'smtp.gmail.com',
+  host: 'smtp-relay.gmail.com', // Ya fir agar yeh na chale toh direct '74.125.142.108' likh sakte hain
   port: 587,
   secure: false, 
   auth: {
     user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS // Bina space wala 16-digit code
+    pass: process.env.EMAIL_PASS 
   },
   tls: {
-    rejectUnauthorized: false 
+    rejectUnauthorized: false,
+    minVersion: 'TLSv1.2' // Yeh Render ke security network ko bypass karne mein madad karega
   }
 });
 
