@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const nodemailer = require('nodemailer');
+const { Resend } = require('resend'); // ✅ Resend Imported
 require('dotenv').config();
 
 const coachRoutes = require('./routes/coachRoutes'); 
@@ -19,29 +19,8 @@ mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("🚀 MongoDB Atlas Connected!"))
   .catch((err) => console.log("❌ DB Connection Error: ", err));
 
-// --- NODEMAILER TRANSPORTER ---
-const transporter = nodemailer.createTransport({
-  host: 'smtp-relay.gmail.com', // Ya fir agar yeh na chale toh direct '74.125.142.108' likh sakte hain
-  port: 587,
-  secure: false, 
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS 
-  },
-  tls: {
-    rejectUnauthorized: false,
-    minVersion: 'TLSv1.2' // Yeh Render ke security network ko bypass karne mein madad karega
-  }
-});
-
-// Transporter Check
-transporter.verify((error, success) => {
-  if (error) {
-    console.log("❌ Nodemailer Setup Error:", error);
-  } else {
-    console.log("✅ Nodemailer is ready to send emails");
-  }
-});
+// --- RESEND INITIALIZATION ---
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 // --- 1. USER SCHEMA ---
 const userSchema = new mongoose.Schema({
@@ -52,9 +31,9 @@ const userSchema = new mongoose.Schema({
   experience: String,
   english: String,
   focus: String,
-  otp: String,           
+  otp: String,          
   otpExpires: Date,      
-  isVerified: { type: Boolean, default: false }, // Naya field to check status
+  isVerified: { type: Boolean, default: false }, 
   createdAt: { type: Date, default: Date.now }
 });
 
@@ -98,18 +77,24 @@ app.post('/api/send-otp', async (req, res) => {
       { upsert: true, returnDocument: 'after' }
     );
 
-    const mailOptions = {
-      from: `"Prep AI Support" <${process.env.EMAIL_USER}>`,
-      to: email,
-      subject: 'Prep AI Security Verification Code',
-      text: `Your verification code is: ${otpCode}. It is valid for 10 minutes.`
-    };
+    // ✅ SAFTY CHECK: Resend free tier restrictions handler
+    // Agar koi doosri email try karega testing mein, toh code crash nahi hoga, console mein dikh jayega.
+    try {
+      await resend.emails.send({
+        from: 'Prep AI <onboarding@resend.dev>', 
+        to: email,
+        subject: 'Prep AI Security Verification Code',
+        html: `<p>Your verification code is: <strong>${otpCode}</strong>. It is valid for 10 minutes.</p>`
+      });
+      console.log("✅ OTP sent via Resend to:", email);
+    } catch (emailErr) {
+      console.log("⚠️ Resend Free Tier Limit Notification:", emailErr.message);
+      console.log(`🔥 TESTING MODE OTP FOR ${email} IS: ${otpCode}`);
+    }
 
-    await transporter.sendMail(mailOptions);
-    console.log("✅ OTP sent to:", email);
-    res.status(200).json({ message: "OTP sent successfully! 📧" });
+    res.status(200).json({ message: "OTP process triggered successfully! 📧" });
   } catch (err) {
-    console.error("❌ NODEMAILER ERROR:", err);
+    console.error("❌ GLOBAL OTP ERROR:", err);
     res.status(500).json({ message: "Error sending OTP", error: err.message });
   }
 });
