@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const { Resend } = require('resend'); // ✅ Resend Imported
+const Brevo = require('@getbrevo/brevo'); // ✅ Brevo Imported
 require('dotenv').config();
 
 const coachRoutes = require('./routes/coachRoutes'); 
@@ -19,8 +19,11 @@ mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("🚀 MongoDB Atlas Connected!"))
   .catch((err) => console.log("❌ DB Connection Error: ", err));
 
-// --- RESEND INITIALIZATION ---
-const resend = new Resend(process.env.RESEND_API_KEY);
+// --- BREVO INITIALIZATION ---
+const defaultClient = Brevo.ApiClient.instance;
+const apiKey = defaultClient.authentications['api-key'];
+apiKey.apiKey = process.env.BREVO_API_KEY;
+const apiInstance = new Brevo.TransactionalEmailsApi();
 
 // --- 1. USER SCHEMA ---
 const userSchema = new mongoose.Schema({
@@ -61,7 +64,6 @@ app.post('/api/send-otp', async (req, res) => {
     const { email } = req.body;
     console.log("📩 OTP Request for:", email);
 
-    // Check if user is already fully registered
     const existingUser = await User.findOne({ email });
     if (existingUser && existingUser.password) {
       return res.status(400).json({ message: "Email already registered! Please login." });
@@ -70,31 +72,25 @@ app.post('/api/send-otp', async (req, res) => {
     const otpCode = Math.floor(100000 + Math.random() * 900000).toString();
     const otpExpires = Date.now() + 600000; // 10 Min
 
-    // Upsert: Email save karega aur OTP update karega
     await User.findOneAndUpdate(
       { email },
       { otp: otpCode, otpExpires },
       { upsert: true, returnDocument: 'after' }
     );
 
-    // ✅ SAFTY CHECK: Resend free tier restrictions handler
-    // Agar koi doosri email try karega testing mein, toh code crash nahi hoga, console mein dikh jayega.
-    try {
-      await resend.emails.send({
-        from: 'Prep AI <onboarding@resend.dev>', 
-        to: email,
-        subject: 'Prep AI Security Verification Code',
-        html: `<p>Your verification code is: <strong>${otpCode}</strong>. It is valid for 10 minutes.</p>`
-      });
-      console.log("✅ OTP sent via Resend to:", email);
-    } catch (emailErr) {
-      console.log("⚠️ Resend Free Tier Limit Notification:", emailErr.message);
-      console.log(`🔥 TESTING MODE OTP FOR ${email} IS: ${otpCode}`);
-    }
+    // ✅ BREVO EMAIL SENDING LOGIC (Har user ko asli mail jayega)
+    const sendSmtpEmail = new Brevo.SendSmtpEmail();
+    sendSmtpEmail.subject = "Prep AI Security Verification Code";
+    sendSmtpEmail.htmlContent = `<p>Your verification code is: <strong>${otpCode}</strong>. It is valid for 10 minutes.</p>`;
+    sendSmtpEmail.sender = { "name": "Prep AI Support", "email": "support@prepai.dev" }; // Yeh bina verification ke chalega
+    sendSmtpEmail.to = [{ "email": email }];
 
-    res.status(200).json({ message: "OTP process triggered successfully! 📧" });
+    await apiInstance.sendTransacEmail(sendSmtpEmail);
+    console.log("✅ OTP sent via Brevo to:", email);
+
+    res.status(200).json({ message: "OTP sent successfully! 📧" });
   } catch (err) {
-    console.error("❌ GLOBAL OTP ERROR:", err);
+    console.error("❌ BREVO API ERROR:", err);
     res.status(500).json({ message: "Error sending OTP", error: err.message });
   }
 });
@@ -111,7 +107,6 @@ app.post('/api/verify-otp', async (req, res) => {
 
     if (!user) return res.status(400).json({ message: "Invalid or Expired OTP! ❌" });
 
-    // Mark as verified but wait for password
     user.isVerified = true;
     await user.save();
 
@@ -125,7 +120,6 @@ app.post('/api/verify-otp', async (req, res) => {
 app.post('/api/signup', async (req, res) => {
   try {
     const { name, email, password, role, experience, english, focus } = req.body;
-    
     const hashedPassword = await bcrypt.hash(password, 10);
     
     const user = await User.findOneAndUpdate(
@@ -145,7 +139,6 @@ app.post('/api/signup', async (req, res) => {
     );
 
     if (!user) return res.status(404).json({ message: "User not found. Verify email first." });
-
     res.status(201).json({ message: "User Registered Successfully! 🎉" });
   } catch (err) {
     res.status(500).json({ message: "Signup failed", error: err.message });
