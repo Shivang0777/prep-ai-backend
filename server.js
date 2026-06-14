@@ -4,11 +4,13 @@ const cors = require('cors');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const Brevo = require('@getbrevo/brevo'); // ✅ Brevo Imported
+const multer = require('multer'); // 👈 ADDED: File handle karne ke liye
 require('dotenv').config();
 
 const coachRoutes = require('./routes/coachRoutes'); 
 
 const app = express();
+const upload = multer(); // 👈 ADDED: Audio chunks ko buffer mein rakhne ke liye
 
 // Middleware
 app.use(express.json());
@@ -58,6 +60,34 @@ const Question = mongoose.model('Question', questionSchema);
 // --- 3. AI COACH ROUTES ---
 app.use('/api/coach', coachRoutes);
 
+// 🎯 NEW BYPASS ROUTE: Frontend ke ERR_NAME_NOT_RESOLVED block ko thik karne ke liye
+app.post('/api/coach/transcribe', upload.single('audio'), async (req, res) => {
+    try {
+        if (!req.file) {
+            return res.status(400).json({ error: "Audio file nahi mili" });
+        }
+
+        // Backend se direct Hugging Face ko hit (Yahan India ka ISP block kaam nahi karega)
+        const hfResponse = await fetch(
+            "https://api-inference.huggingface.co/models/openai/whisper-large-v3",
+            {
+                headers: { 
+                    Authorization: `Bearer ${process.env.HF_WHISPER_KEY}` // Key backend .env se uthayega
+                },
+                method: "POST",
+                body: req.file.buffer, // Raw buffer direct hit hoga
+            }
+        );
+
+        const aiResult = await hfResponse.json();
+        res.json(aiResult); // Response direct frontend ko de diya
+        
+    } catch (error) {
+        console.error("Backend HF Proxy Error:", error);
+        res.status(500).json({ error: "Server failed to contact Hugging Face" });
+    }
+});
+
 // --- 4. OTP SEND API ---
 app.post('/api/send-otp', async (req, res) => {
   try {
@@ -78,11 +108,10 @@ app.post('/api/send-otp', async (req, res) => {
       { upsert: true, returnDocument: 'after' }
     );
 
-    // ✅ BREVO EMAIL SENDING LOGIC (Har user ko asli mail jayega)
     const sendSmtpEmail = new Brevo.SendSmtpEmail();
     sendSmtpEmail.subject = "Prep AI Security Verification Code";
     sendSmtpEmail.htmlContent = `<p>Your verification code is: <strong>${otpCode}</strong>. It is valid for 10 minutes.</p>`;
-    sendSmtpEmail.sender = { "name": "Prep AI Support", "email": "support@prepai.dev" }; // Yeh bina verification ke chalega
+    sendSmtpEmail.sender = { "name": "Prep AI Support", "email": "support@prepai.dev" }; 
     sendSmtpEmail.to = [{ "email": email }];
 
     await apiInstance.sendTransacEmail(sendSmtpEmail);
