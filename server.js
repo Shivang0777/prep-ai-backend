@@ -22,10 +22,9 @@ mongoose.connect(process.env.MONGO_URI)
   .catch((err) => console.log("❌ DB Connection Error: ", err));
 
 // --- BREVO INITIALIZATION ---
-const defaultClient = Brevo.ApiClient.instance;
-const apiKey = defaultClient.authentications['api-key'];
-apiKey.apiKey = process.env.BREVO_API_KEY;
+// --- BREVO INITIALIZATION ---
 const apiInstance = new Brevo.TransactionalEmailsApi();
+apiInstance.setApiKey(Brevo.TransactionalEmailsApiApiKeys.apiKey, process.env.BREVO_API_KEY);
 
 // --- 1. USER SCHEMA ---
 const userSchema = new mongoose.Schema({
