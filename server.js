@@ -23,8 +23,9 @@ mongoose.connect(process.env.MONGO_URI)
 
 // --- BREVO INITIALIZATION ---
 // --- BREVO INITIALIZATION ---
-const apiInstance = new Brevo.TransactionalEmailsApi();
-apiInstance.setApiKey(Brevo.TransactionalEmailsApiApiKeys.apiKey, process.env.BREVO_API_KEY);
+// --- BREVO INITIALIZATION ---
+let apiInstance = new Brevo.TransactionalEmailsApi();
+apiInstance.authentications['apiKey'].apiKey = process.env.BREVO_API_KEY;
 
 // --- 1. USER SCHEMA ---
 const userSchema = new mongoose.Schema({
