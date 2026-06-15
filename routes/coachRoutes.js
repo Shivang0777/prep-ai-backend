@@ -26,7 +26,7 @@ router.post('/transcribe', upload.single('audio'), async (req, res) => {
 
         // Backend se Hugging Face ko hit maaro (Bypass client network block)
         const hfResponse = await fetch(
-            "https://api-inference.huggingface.co/models/openai/whisper-large-v3",
+            "https://api.huggingface.co/models/openai/whisper-large-v3",
             {
                 headers: { 
                     Authorization: `Bearer ${process.env.HF_WHISPER_KEY}` 
