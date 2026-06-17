@@ -46,10 +46,13 @@ router.post('/transcribe-interview', upload.single('audio'), async (req, res) =>
             return res.status(400).json({ error: "Mock Interview: Audio file nahi mili" });
         }
 
-        console.log(`🎤 Interview Chunk Received: ${req.file.size} bytes`);
+        console.log(`🎤 Interview Chunk Received: ${req.file.size} bytes | Mime: ${req.file.mimetype}`);
 
-        // Extension mismatch se bachane ke liye standard webm format buffer inject kiya
-        const file = await Groq.toFile(req.file.buffer, 'audio.webm', { type: req.file.mimetype });
+        // 🎯 CHANGE 1: Strict dynamic content-type fallback.
+        // Agar phone browser stream chunks ka mimetype empty ya dynamic phekta hai, 
+        // toh Groq backend use 'audio/webm' treat karega taaki invalid_request_error na aaye.
+        const contentType = req.file.mimetype || 'audio/webm';
+        const file = await Groq.toFile(req.file.buffer, 'audio.webm', { type: contentType });
 
         const transcription = await groq.audio.transcriptions.create({
             file: file, 
@@ -63,7 +66,7 @@ router.post('/transcribe-interview', upload.single('audio'), async (req, res) =>
 
         console.log(`📱 Decoded Text: "${decodedText}"`);
 
-        // Voice commands analysis for hands-free mode
+        // Voice commands analysis for hands-free mode (Tera code - untouched)
         let commandTriggered = null;
         if (lowerText.includes("next question") || lowerText.includes("next")) {
             commandTriggered = "next";
@@ -85,7 +88,10 @@ router.post('/transcribe-interview', upload.single('audio'), async (req, res) =>
         });
         
     } catch (error) {
-        console.error("❌ Groq Interview Whisper Error:", error.message);
+        // 🎯 CHANGE 2: Full error object logging.
+        // `error.message` ki jagah poora object console kiya hai taaki agar cloud par dobara kuch phate 
+        // toh hume logs mein exact API failure message aur type saaf-saaf dikhe.
+        console.error("❌ Groq Interview Whisper Full Error Object:", error);
         return res.status(500).json({ error: "Groq interview transcription failed", details: error.message });
     }
 });
