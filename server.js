@@ -100,6 +100,7 @@ app.post('/api/coach/transcribe', upload.single('audio'), async (req, res) => {
 });
 
 // --- 4. OTP SEND API ---
+// --- 4. OTP SEND API ---
 app.post('/api/send-otp', async (req, res) => {
   try {
     const { email } = req.body;
@@ -118,6 +119,13 @@ app.post('/api/send-otp', async (req, res) => {
       { otp: otpCode, otpExpires },
       { upsert: true, returnDocument: 'after' }
     );
+
+    // 🎯 EXACT FIX: Route ke andar apiInstance ki key explicitly initialize kar di
+    if (apiInstance.authentications && apiInstance.authentications['api-key']) {
+        apiInstance.authentications['api-key'].apiKey = process.env.BREVO_API_KEY;
+    } else if (apiInstance.setApiKey) {
+        apiInstance.setApiKey(0, process.env.BREVO_API_KEY);
+    }
 
     const sendSmtpEmail = new Brevo.SendSmtpEmail();
     sendSmtpEmail.subject = "Prep AI Security Verification Code";
