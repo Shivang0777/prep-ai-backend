@@ -116,7 +116,7 @@ app.post('/api/send-otp', async (req, res) => {
     const sendSmtpEmail = new Brevo.SendSmtpEmail();
     sendSmtpEmail.subject = "Prep AI Security Verification Code";
     sendSmtpEmail.htmlContent = `<p>Your verification code is: <strong>${otpCode}</strong>. It is valid for 10 minutes.</p>`;
-    sendSmtpEmail.sender = { "name": "Prep AI Support", "email": "support@prepai.dev" }; 
+    sendSmtpEmail.sender = { "name": "Prep AI Support", "email": "shivangv456@gmail.com" }; 
     sendSmtpEmail.to = [{ "email": email }];
 
     await apiInstance.sendTransacEmail(sendSmtpEmail);
