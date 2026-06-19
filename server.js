@@ -1,16 +1,18 @@
+// 1. DYNAMIC ENV LOAD ENGINE (SABSE PEHLE)
+require('dotenv').config(); 
+
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const Brevo = require('@getbrevo/brevo'); // ✅ Brevo Imported
-const multer = require('multer'); // 👈 ADDED: File handle karne ke liye
-require('dotenv').config();
+const Brevo = require('@getbrevo/brevo'); 
+const multer = require('multer'); 
 
 const coachRoutes = require('./routes/coachRoutes'); 
 
 const app = express();
-const upload = multer(); // 👈 ADDED: Audio chunks ko buffer mein rakhne ke liye
+const upload = multer(); 
 
 // Middleware
 app.use(express.json());
@@ -21,22 +23,11 @@ mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("🚀 MongoDB Atlas Connected!"))
   .catch((err) => console.log("❌ DB Connection Error: ", err));
 
-// --- BREVO INITIALIZATION ---
-// --- BREVO INITIALIZATION ---
-// --- BREVO INITIALIZATION ---
-// --- BREVO INITIALIZATION ---
-const apiInstance = Brevo.TransactionalEmailsApi.alloc
-  ? Brevo.TransactionalEmailsApi.alloc()
-  : new Brevo.TransactionalEmailsApi();
-
-if (apiInstance.authentications && apiInstance.authentications['api-key']) {
-    apiInstance.authentications['api-key'].apiKey = process.env.BREVO_API_KEY;
-} else if (apiInstance.setApiKey) {
-    apiInstance.setApiKey(0, process.env.BREVO_API_KEY);
-} else {
-    apiInstance.authentications = apiInstance.authentications || {};
-    apiInstance.authentications['apiKey'] = { apiKey: process.env.BREVO_API_KEY };
-}
+// --- BREVO INITIALIZATION (SAFE SEQUENCE) ---
+const apiInstance = new Brevo.TransactionalEmailsApi();
+let defaultClient = Brevo.ApiClient.instance;
+let apiKey = defaultClient.authentications['api-key'];
+apiKey.apiKey = process.env.BREVO_API_KEY; 
 
 // --- 1. USER SCHEMA ---
 const userSchema = new mongoose.Schema({
@@ -71,27 +62,26 @@ const Question = mongoose.model('Question', questionSchema);
 // --- 3. AI COACH ROUTES ---
 app.use('/api/coach', coachRoutes);
 
-// 🎯 NEW BYPASS ROUTE: Frontend ke ERR_NAME_NOT_RESOLVED block ko thik karne ke liye
+// --- HUGGING FACE VOICE PROXY ROUTE ---
 app.post('/api/coach/transcribe', upload.single('audio'), async (req, res) => {
     try {
         if (!req.file) {
             return res.status(400).json({ error: "Audio file nahi mili" });
         }
 
-        // Backend se direct Hugging Face ko hit (Yahan India ka ISP block kaam nahi karega)
         const hfResponse = await fetch(
             "https://api-inference.huggingface.co/models/openai/whisper-large-v3",
             {
                 headers: { 
-                    Authorization: `Bearer ${process.env.HF_WHISPER_KEY}` // Key backend .env se uthayega
+                    Authorization: `Bearer ${process.env.HF_WHISPER_KEY}` 
                 },
                 method: "POST",
-                body: req.file.buffer, // Raw buffer direct hit hoga
+                body: req.file.buffer,
             }
         );
 
         const aiResult = await hfResponse.json();
-        res.json(aiResult); // Response direct frontend ko de diya
+        res.json(aiResult);
         
     } catch (error) {
         console.error("Backend HF Proxy Error:", error);
@@ -99,8 +89,7 @@ app.post('/api/coach/transcribe', upload.single('audio'), async (req, res) => {
     }
 });
 
-// --- 4. OTP SEND API ---
-// --- 4. OTP SEND API ---
+// --- 4. OTP SEND API (DYNAMIC CLIENT RE-SYNC) ---
 app.post('/api/send-otp', async (req, res) => {
   try {
     const { email } = req.body;
@@ -120,19 +109,9 @@ app.post('/api/send-otp', async (req, res) => {
       { upsert: true, returnDocument: 'after' }
     );
 
-    // 🎯 GITHUB BYPASS HACK: Key ko tod diya taaki GitHub reject na kare
-    const part1 = "xkeysib-7a62f925ae7c67114cecfed506c9";
-    const part2 = "9e1d16707098f8f7b06f05274c4fef1bae36-odcpswnC1BQaWqHy";
-    const combinedKey = part1 + part2;
-
-    if (apiInstance.authentications && apiInstance.authentications['api-key']) {
-        apiInstance.authentications['api-key'].apiKey = combinedKey;
-    } else if (apiInstance.setApiKey) {
-        apiInstance.setApiKey(0, combinedKey);
-    } else {
-        apiInstance.authentications = apiInstance.authentications || {};
-        apiInstance.authentications['apiKey'] = { apiKey: combinedKey };
-    }
+    // Dynamic injection right before trigger to bypass scope dropping on render
+    let currentClient = Brevo.ApiClient.instance;
+    currentClient.authentications['api-key'].apiKey = process.env.BREVO_API_KEY;
 
     const sendSmtpEmail = new Brevo.SendSmtpEmail();
     sendSmtpEmail.subject = "Prep AI Security Verification Code";
@@ -246,5 +225,5 @@ app.get('/api/questions/:id', async (req, res) => {
     }
 });
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5000; 
 app.listen(PORT, () => console.log(`🚀 Server started on port ${PORT}`));
